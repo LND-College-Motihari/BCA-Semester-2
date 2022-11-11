@@ -7,18 +7,18 @@ typedef struct stackArray {
     int *arr;
 } Stack;
 
-void push(Stack* st, int element) {
+void pushElement(Stack* st, int element) {
     if(st->size - st->top > 1) {
         st->top++;
         st->arr[st->top] = element;
     } else {
-        printf("Stack overflow\n");
+        printf("Stack overflow!\n");
     }
 }
 
-void pop(Stack* st) {
+void popElement(Stack* st) {
     if(st->top == -1) {
-        printf("Stack underflow\n");
+        printf("Stack underflow!\n");
     } else {
         st->top--;
     }
@@ -31,10 +31,10 @@ int main() {
     s.top = -1;
     s.arr = (int*) malloc(s.size * sizeof(int));
 
-    push(&s, 10);
-    push(&s, 45);
-    push(&s, 12);
-    push(&s, 64);
+    pushElement(&s, 10);
+    pushElement(&s, 45);
+    pushElement(&s, 12);
+    pushElement(&s, 64);
 
     printf("Top element of stack = %d\n", s.arr[s.top]);
 
