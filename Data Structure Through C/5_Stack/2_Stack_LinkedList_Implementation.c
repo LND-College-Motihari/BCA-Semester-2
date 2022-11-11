@@ -6,39 +6,36 @@ typedef struct stackLinkedList {
     struct stackLinkedList *next;
 } Stack;
 
-void pushElement(Stack* st, int element) {
-    Stack *Node;
-    Node = (Stack*) malloc(sizeof(Stack));
+Stack *s = NULL;
 
-    printf("Step1 : st->data = %d\n", st->data);
-    
-    Node->data = element;
-    Node->next = st;
-    st = Node;
+void pushElement(int element) {
+    Stack *newNode;
+    newNode = (Stack*) malloc(sizeof(Stack));
 
-    printf("Step2 : Element = %d  &  Node->data = %d  &  st->data = %d  &  Node->next->data = %d\n\n", element, Node->data, st->data, Node->next->data);
+    newNode->data = element;
+    newNode->next = s;
+    s = newNode;
+}
+
+void popElement() {
+    if(s==NULL) {
+        printf("Stack underflow!\n");
+        return;
+    }
+
+    Stack *target = s;
+    s = s->next;
+    free(target);
 }
 
 int main() {
     
-    Stack *s = NULL;
-    //s.size = 5;
-    //s.top = -1;
-    //s = (Stack*) malloc(sizeof(Stack));
-    //s->next = NULL;
-    //s->data = 55;
-    //s->data = -1;
-    //s->next = NULL;
-
-    //printf("Push call for elemnent = %d  &  s->data = %d  &  s->next->data = %d\n", 10, s->data, s->next->data);
-    pushElement(s, 10);
-    //printf("Push call for elemnent = %d  &  s->data = %d  &  s->next->data = %d\n", 45, s->data, s->next->data);
-    pushElement(s, 45);
-    printf("Push call for elemnent = %d  &  s->data = %d  &  s->next->data = %d\n", 12, s->data, s->next->data);
-    pushElement(s, 12);
-    printf("Push call for elemnent = %d  &  s->data = %d  &  s->next->data = %d\n", 64, s->data, s->next->data);
-    pushElement(s, 64);
+    pushElement(10);
+    pushElement(45);
+    pushElement(12);
+    pushElement(64);
 
     printf("Top element of stack = %d\n", s->data);
+
     return 0;
 }
