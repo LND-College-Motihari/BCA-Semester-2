@@ -91,37 +91,6 @@ void inOrderIterative() {
     }
 }
 
-void postOrderIterative() {
-    Tree *stack[20];
-    int FS[20];
-
-    int top = -1;
-    int TP = -1;
-
-    Tree *ptr = root;
-    stack[++top] = NULL;
-
-    while(ptr != NULL) {
-        stack[++top] = ptr;
-        FS[top] = 1;
-
-        if(ptr->right != NULL) {
-            stack[++top] = ptr->right;
-            FS[top] = -1;
-        }
-
-        ptr = ptr->left;
-        TP = top;
-        ptr = stack[top--];
-
-        while(FS[TP] == 1) {
-            printf("%d ", ptr->data);
-            TP = top;
-            ptr = stack[top];
-        }
-    } 
-}
-
 void preOrderRecurive(Tree *root) {
     if(root == NULL) {
         return;
@@ -158,8 +127,8 @@ int main() {
 
     printf("\n\n\nElements of tree : ");
     postOrderIterative();
-    printf("\n");
-    printf("\nElements of tree : ");
+    
+    printf("\n\nElements of tree : ");
     postOrderRecurive(root);
 
     return 0;
