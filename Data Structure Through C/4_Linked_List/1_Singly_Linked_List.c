@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include <conio.h>
 #include <stdlib.h>
-#include <math.h>
 
 typedef struct Node {
     int data;
@@ -100,8 +100,9 @@ void deleteFirst() {
     }
     
     SLL *target = start;
-
     start = start->next;
+    
+    printf("Value deleted = %d\n", target->data);
     free(target);
 }
 
@@ -120,6 +121,7 @@ void deleteLast() {
     }
 
     prev->next = NULL;
+    printf("Value deleted = %d\n", target->data);
     free(target);
 }
 
@@ -135,13 +137,14 @@ void deleteAtPosition(int pos) {
 
     if(pos==1) {
         start = start->next;
+        printf("Value deleted = %d\n", track->data);
         free(track);
         return;
     }
 
     while(flag<pos) {
         if(track==NULL) {
-            printf("Position not found");
+            printf("Position not found\n");
             return;
         }
 
@@ -150,7 +153,13 @@ void deleteAtPosition(int pos) {
         flag++;
     }
 
+    if(track==NULL || pos<1) {
+        printf("Position not found\n");
+        return;
+    }
+
     prev->next = track->next;
+    printf("Value deleted = %d\n", track->data);
     free(track);
 }
 
@@ -176,41 +185,32 @@ void searchLinkedList(int val) {
     printf("Value not found!\n");
 }
 
-int main() {
-    for(int i=1; i<=5; i++) {
-        insertAtLast(pow(2,i));
-    }
+void menu() {
+    system("cls");
 
-    printf("Linked list : ");
-    printList();
-
-    return 0;
-}
-
-
-
-
-//    main() function in the form of a menu card as per the syllabus of lab portion guided by Mam (Anjna Chaudhary)
-/*
-
-    int choice = 0;
-    
     printf("------------------------------------------------------");
     printf("\n                  Singly Linked List");
-    printf("\n------------------------------------------------------\n\n");
+    printf("\n------------------------------------------------------");
+        
+    printf("\n\t01  -  Print list");
+    printf("\n\t02  -  Insert at first");
+    printf("\n\t03  -  Insert at last");
+    printf("\n\t04  -  Insert at desired position");
+    printf("\n\t05  -  Delete first element");
+    printf("\n\t06  -  Delete last element");
+    printf("\n\t07  -  Delete element from desired position");
+    printf("\n\t08  -  Search in the list");
+    printf("\n\t09  -  Exit\n");
+
+    printf("Enter your choice : ");
+}
+
+int main() {
+    int choice = 0;
+    int element, pos;
 
     while(choice != 9) {
-        printf("Enter your choice : ");
-        printf("\n\t\t1  -  Print list");
-        printf("\n\t\t2  -  Insert at first");
-        printf("\n\t\t3  -  Insert at last");
-        printf("\n\t\t4  -  Insert at desired position");
-        printf("\n\t\t5  -  Delete first element");
-        printf("\n\t\t6  -  Delete last element");
-        printf("\n\t\t7  -  Delete element from desired position");
-        printf("\n\t\t8  -  Search in the list");
-        printf("\n\t\t9  -  Exit\n");
-
+        menu();
         scanf("%d", &choice);
 
         switch(choice) {
@@ -218,21 +218,18 @@ int main() {
                 printList();
                 break;
             case 2 : {
-                int element;
                 printf("Enter an element to insert at first position : ");
                 scanf("%d", &element);
                 insertAtFirst(element);
                 break;
             }
             case 3 : {
-                int element;
                 printf("Enter an element to insert at last position : ");
                 scanf("%d", &element);
                 insertAtLast(element);
                 break;
             }
             case 4 : {
-                int element, pos;
                 printf("Enter an element for insertion : ");
                 scanf("%d", &element);
                 printf("Enter the position where you want to insert the element : ");
@@ -247,24 +244,29 @@ int main() {
                 deleteLast();
                 break;
             case 7 : {
-                int pos;
                 printf("Enter the position where you want to perform deletion : ");
                 scanf("%d", &pos);
                 deleteAtPosition(pos);
                 break;
             }
             case 8 : {
-                int element;
                 printf("Enter the element you want to search for : ");
                 scanf("%d", &element);
                 searchLinkedList(element);
                 break;
             }
             case 9 :
+                printf("\n---------------------------------");
+                printf("\n            THANK YOU");
+                printf("\n---------------------------------\n");
                 break;
             default :
-                printf("Enter correct choice!\n");
+                printf("Select valid option!\n");
         }
-    }
 
-*/
+        printf("\nPress any key to continue.........");
+        getch();
+    }
+    
+    return 0;
+}
