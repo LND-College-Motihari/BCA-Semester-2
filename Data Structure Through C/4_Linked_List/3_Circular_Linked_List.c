@@ -137,6 +137,7 @@ void deleteFirst() {
     }
 
     CLL *target = start;
+    
     track->next = start->next;
     start = (start==track) ? NULL : start->next;
 
@@ -179,7 +180,16 @@ void deleteAtPosition(int pos) {
     CLL *track = start;
     int flag = 1;
 
-    // Special condition for insertion at first position
+    // Special Case : When list has single element
+    if(track->next == track) {
+        start = NULL;
+        printf("Value deleted = %d\n", track->data);
+        free(track);
+        return;
+    }
+
+    // Special Case : When pos = 1
+    // Reason : We have to handle the link of last node which is pointing current start
     if(pos==1) {
         do {
             track = track->next;
@@ -194,7 +204,7 @@ void deleteAtPosition(int pos) {
         return;
     }
 
-    while(flag < pos) {
+    while(flag < pos-1) {
         track = track->next;
         flag++;
 
