@@ -2,7 +2,19 @@
 #include <stdlib.h>
 
 /*
-    InOrder (Infix Order) Traversal of binary tree
+    A Binary Search Tree (BST) is a tree in which all the nodes follow the below-mentioned property −
+    left_subtree (Data items) <= node (Data item) <= right_subtree (Data items)
+
+    ------------------------------------------------------------------
+
+    BST : A structure variable containing three elements - data, left & right
+    BST->data : Stores the data of that particular node
+    BST->left : Stores the address of left child of that particular node
+    BST->right : Stores the address of right child of that particular node
+    
+    ---------------------------------
+
+    InOrder (Infix Order) Traversal of binary search tree
     Algorithm used : LNR (Left - Node - Right)
     
     ---------------------------------
@@ -20,14 +32,14 @@
     track : A temporary variable used for traversing through the tree
 */
 
-typedef struct Node {
+typedef struct TreeNode {
     int data;
-    struct Node *left, *right;
-} Tree;
+    struct TreeNode *left, *right;
+} BST;
 
-Tree *root = NULL;
+BST *root = NULL;
 
-Tree* buildTree(Tree *root) {
+BST* buildBST(BST *root) {
     int value;
     printf("Enter the value (-1 for NULL) : ");
     scanf("%d", &value);
@@ -36,7 +48,7 @@ Tree* buildTree(Tree *root) {
         return NULL;
     }
 
-    root = (Tree*) malloc(sizeof(Tree*));
+    root = (BST*) malloc(sizeof(BST*));
     root->data = value;
     root->left = NULL;
     root->right = NULL;
@@ -46,18 +58,18 @@ Tree* buildTree(Tree *root) {
     }
 
     printf("Left child of %d - ", value);
-    root->left = buildTree(root->left);
+    root->left = buildBST(root->left);
 
     printf("Right child of %d - ", value);
-    root->right = buildTree(root->right);
+    root->right = buildBST(root->right);
 
     return root;
 }
 
 void inOrderIterative() {
-    Tree *stack[20];
+    BST *stack[20];
     int top = -1;
-    Tree *track = root;
+    BST *track = root;
 
     while(top != -1 || track != NULL) {
         if(track != NULL) {
@@ -71,7 +83,7 @@ void inOrderIterative() {
     }
 }
 
-void inOrderRecurive(Tree *root) {
+void inOrderRecurive(BST *root) {
     if(root == NULL) {
         return;
     }
@@ -83,7 +95,7 @@ void inOrderRecurive(Tree *root) {
 
 int main() {
     // Input : 10 15 20 -1 -1 25 -1 -1 30 40 -1 -1 50 -1 -1
-    root = buildTree(root);
+    root = buildBST(root);
 
     printf("\n\n\nElements of tree in InOrder Traversal (Iterative method) : ");
     inOrderIterative();
