@@ -33,20 +33,31 @@ void insertAtHead(int element) {
 }
 
 void insertionSort() {
-    for(int i=1; i<=size; i++) {
-        int temp = arr[i];
-        int j = i-1;
-
-        while(arr[j]>temp && j>=0) {
-            arr[j+1] = arr[j];
-            j--;
-        }
-
-        arr[j+1] = temp;
-    }
-
-
+    SLL *curr = head;
+    SLL *sorted = NULL;
     
+    while(curr != head) {
+        SLL *next = curr->next;
+        
+        if(sorted == NULL || sorted->data >= curr->data) {
+            curr->next = sorted;
+            sorted = curr;
+        } else {
+            SLL *temp = sorted;
+            
+            while(temp->next != NULL && temp->next->data < curr->data) {
+                temp = temp->next;
+            }
+            
+            curr->next = temp->next;
+            temp->next = curr;
+        }
+        
+        curr->next = temp->next;
+        temp->next = curr;
+    }
+    
+    head = sorted;
 }
 
 int main() {
@@ -64,7 +75,7 @@ int main() {
     printf("Before sorting : ");
     printList();
 
-    //insertionSort();
+    insertionSort();
 
     printf("After sorting : ");
     printList();
