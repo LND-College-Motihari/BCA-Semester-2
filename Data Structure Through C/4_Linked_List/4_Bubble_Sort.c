@@ -33,7 +33,23 @@ void insertAtHead(int element) {
 }
 
 void bubbleSort() {
+    SLL *ptr = head;
+    SLL *temp = NULL;
     
+    while(ptr != temp) {
+        while(ptr->next != temp) {
+            if(ptr->data > ptr->next->data) {
+                int x = ptr->data;
+                ptr->data = ptr->next->data;
+                ptr->next->data = x;
+            }
+            
+            ptr = ptr->next;
+        }
+        
+        temp = ptr;
+        ptr = head;
+    }
 }
 
 int main() {
@@ -51,7 +67,7 @@ int main() {
     printf("Before sorting : ");
     printList();
 
-    //bubbleSort();
+    bubbleSort();
 
     printf("After sorting : ");
     printList();
