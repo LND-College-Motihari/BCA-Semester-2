@@ -23,7 +23,7 @@ void showArray(int arr[], int n) {
     temp - Temporary variable to store the current element for insertion
 */
 void insertionSort(int arr[], int size) {
-
+    
     for(int i=1; i<=size; i++) {
         int temp = arr[i];
         int j = i-1;
@@ -49,3 +49,25 @@ int main() {
 
     return 0;
 }
+
+
+
+
+// Another style to write the same logic using for loop
+/*
+void insertionSort(int A[], int n) {
+    int i, j, v;
+
+    for(i=1; i<n; i++) {
+        v = A[i];
+
+        for(j=i-1; A[j]>v && j>=0; j--) {
+            A[j+1] = A[j];
+        }
+
+        if(j != i-1) {
+            A[j+1] = v;
+        }
+    }
+}
+*/
