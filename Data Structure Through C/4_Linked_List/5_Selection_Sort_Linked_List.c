@@ -32,6 +32,25 @@ void insertAtHead(int element) {
     head = newNode;
 }
 
+/*
+    COMPLEXITY ANALYSIS OF THE ALGORITHM (Selection Sorting of Linked Lists)
+
+    Time Complexity - O(n^2)
+    Space Complexity - O(1)
+    
+    ---------------------------------
+    
+    VARIABLES USED IN THE FUNCTION : 
+
+    haed - Pointer variable pointing at the first element of the given linked list
+    head->data - Data memeber of the list
+    head->next - Pointer variable of the list
+    
+    track - Node variable used to traverse through the list (from head to NULL)
+    min - Contains smallest element of the list
+    minNode - Node pointer containing address of node with minimum value
+    temp - Node variable used to traverse through the list inside the loop (from track->next to NULL)
+*/
 void selectionSort() {
     SLL *track = head;
 
