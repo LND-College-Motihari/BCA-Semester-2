@@ -1,0 +1,210 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+struct node {
+    int information;
+    struct node *next;
+};
+struct node *start=NULL;
+//Function to create a linked list
+void createlist(){
+    if (start==NULL){
+        int n;
+        printf("enter the number of nodes:");
+        scanf("%d",&n);
+        if(n!=0){
+            int data;
+            struct node *newnode;
+            struct node *temp;
+            newnode=(struct node*)malloc(sizeof(struct node));
+            start=newnode;
+            temp=start;
+            printf("enter the number to be inserted:");
+            scanf("%d",&data);
+            start->information=data;
+            for (int i=2;i<=n;i++){
+                newnode=(struct node*)malloc(sizeof(struct node));
+                temp->next=newnode;
+                printf("enter the number to be inserted:");
+                scanf("%d",&data);
+                newnode->information=data;
+                temp=temp->next;
+            }
+        }
+        printf("the list is created\n");
+    }
+    else
+        printf("the list is already exists");
+}
+//display function
+void display (){
+    int information;
+    struct node *temp;
+    if(start==NULL){
+        printf("list is empty");
+        }
+        else{
+            temp=start;
+            while(temp!=NULL){
+                printf("data=%d", information);
+      }
+    }
+}
+//function to traverse the list
+void traverse (){
+    struct node *temp;
+    if(start==NULL){
+        printf("list is empty");
+    }
+    else{
+        temp=start;
+        while(temp!=NULL){
+            printf("%d",temp->information);
+            temp=temp->next;
+        }
+    
+}
+}
+//function to insert at first
+void insertAtFirst(){
+    int data;
+    struct node *temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("enter the number to be inserted:");
+    scanf("%d",&data);
+    temp->information=data;
+    temp->next=start;
+    start=temp;
+}
+//function to insert at end
+void insertAtEnd(){
+    int data;
+    struct node *temp,*head;
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("enter the number to be inserted:");
+    scanf("%d",&data);
+    temp->next=0;
+    temp->information=data;
+    head=start;
+    while(head->next!=NULL){
+        head=head->next;
+    }
+    head->next=temp;
+}
+//function to insert at any position
+void insertAtPosition(){
+    struct node *temp,*newnode;
+    int position,data,i=1;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter the position and data");
+    scanf("%d %d",& position,&data);
+    temp=start;
+    newnode->information=data;
+    newnode->next=0;
+    while(i<position-1){
+        temp=temp->next;
+        i++;
+        
+    }
+    newnode->next=temp->next;
+    temp->next=newnode;
+    
+}
+//function for delete at first
+void deletefirst(){
+    struct node *temp;
+    if(start==NULL){
+        printf("list is empty");
+    }
+    else{
+        temp=start;
+        start=start->next;
+        free(temp);
+}
+//function to delete from end
+void deleteEnd(){
+    struct node *temp,*prevnode;
+    if(start==NULL){
+        printf ("list is empty");
+    }
+    else{
+        temp=start;
+        while(temp->next!=0){
+            prevnode=temp;
+            temp=temp->next;
+        }
+        free(temp);
+        prevnode->next=0;
+        }
+}
+//function to delete from any specified position
+void deletePosition(){
+    struct node *temp,*position;
+    int i=1, position;
+    if(start==Null){
+        printf("list is empty");
+    }
+    else{
+        printf("enter index:");
+        scanf("%d",&position);
+        position=(struct node*)malloc(sizeof(struct node));
+        temp=start;
+        while(i<position-1){
+            temp=temp->next;
+            i++;
+        }
+}
+position=temp->next;
+temp->next=position->next;
+free(position);
+}
+
+//main function-----------******
+int main(){
+    int choice;
+    display();
+    while(choice!=8){
+        printf("\n\t1 to see list\n");
+        printf("\t2 for insertion at first position\n");
+        printf("\t3 for insertion at last\n");
+        printf("\t4 for insertion at a position\n");
+        printf("\t5 for deletion of first element\n");
+        printf("\t6 for deletion of last element\n");
+        printf("\t7 for deletion at a specific position\n");
+        printf("\t8 to exit\n");
+        printf("\n enter your choice:\n") 
+        scanf("%d",&choice);
+        switch (choice){
+            case 1:
+            traverse();
+            break;
+            case 2:
+            insertAtFirst();
+            break;
+            case 3:
+            insertAtEnd();
+            break;
+            case 4:
+            insertAtPosition();
+            break;
+            case 5:
+            deleteFirst();
+            break;
+            case 6:
+            deleteEnd();
+            break;
+            case 7:
+            deletePosition();
+            break;
+            case 8:
+            exit(1);
+            break;
+            default:
+            printf("incorrect choice\n");
+        }
+    }
+    return 0;
+}
+    
